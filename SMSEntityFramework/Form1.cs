@@ -16,5 +16,28 @@ namespace SMSEntityFramework
         {
             InitializeComponent();
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            Student stu = new Student()
+            {
+                FullName = "Joe Ortiz",
+                DateOfBirth = DateTime.Today
+            };
+
+            StudentDb.Add(stu);
+            MessageBox.Show($"#{stu.StudentId} added");
+
+            List<Student> allStus = StudentDb.GetAllStudents();
+            MessageBox.Show("Total students: " + allStus.Count);
+
+            stu.FullName = "Instructor Ortiz";
+            StudentDb.Update(stu);
+            MessageBox.Show("Student Updated");
+
+            StudentDb.Delete(stu);
+            allStus = StudentDb.GetAllStudents();
+            MessageBox.Show("Total students: " + allStus.Count);
+        }
     }
 }
